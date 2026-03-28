@@ -650,7 +650,6 @@ p { color: var(--muted); line-height: 1.75; }
   background: #111;
   color: rgba(255,255,255,.7);
   padding: 56px 0 0;
-  padding-bottom: env(safe-area-inset-bottom);
 }
 .footer-inner {
   max-width: var(--max-width);
