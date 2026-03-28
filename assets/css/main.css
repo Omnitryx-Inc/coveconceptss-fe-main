@@ -645,12 +645,26 @@ p { color: var(--muted); line-height: 1.75; }
    REVIEWS
    ========================================================= */
 .reviews-section { background: var(--sage-soft); }
+
+/* Mobile: swipeable horizontal slider */
 .reviews-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 12px;
+  margin: 0 -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  scrollbar-width: none;
 }
+.reviews-grid::-webkit-scrollbar { display: none; }
+
 .review-card {
+  scroll-snap-align: start;
+  flex: 0 0 82vw;
+  max-width: 320px;
   background: var(--white);
   border-radius: var(--radius-md);
   padding: 28px;
@@ -697,6 +711,25 @@ p { color: var(--muted); line-height: 1.75; }
 .review-author span {
   font-size: .78rem;
   color: var(--muted);
+}
+
+/* Review dots */
+.reviews-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 20px;
+}
+.reviews-dots span {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+.reviews-dots span.active {
+  background: var(--sage);
+  transform: scale(1.25);
 }
 
 /* About perks */
@@ -1120,8 +1153,18 @@ p { color: var(--muted); line-height: 1.75; }
   .product-card-body { padding: 18px 18px 22px; }
   .product-card-name { font-size: 1.15rem; }
 
-  /* Reviews: 2x2 grid */
-  .reviews-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  /* Reviews: back to 2x2 grid on desktop */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+  .review-card { flex: none; max-width: none; }
+  .reviews-dots { display: none; }
 
   /* About perks */
   .about-perks { flex-direction: row; flex-wrap: wrap; gap: 20px; }

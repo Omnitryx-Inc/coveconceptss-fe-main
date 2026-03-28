@@ -245,19 +245,51 @@ body_class: "page-home"
 
       <div class="review-card">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="review-text">"As a small business owner myself, it means everything to support another Muslim-owned brand. The mugs I ordered are beautiful and my customers keep complimenting them. 10/10."</p>
+        <p class="review-text">"The owner puts her heart into every single piece. You can feel the care and intention behind the work. Cove Conceptss is not just a shop, it is a brand built with purpose and I am proud to know the person behind it."</p>
         <div class="review-author">
-          <div class="review-avatar">MH</div>
+          <div class="review-avatar">JA</div>
           <div>
-            <strong>Mariam H.</strong>
-            <span>London, UK</span>
+            <strong>Jawwad A.</strong>
+            <span>Milton, Canada</span>
           </div>
         </div>
       </div>
 
     </div>
+    <div class="reviews-dots" id="reviews-dots">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 </section>
+
+<script>
+  (function() {
+    const track = document.querySelector('.reviews-grid');
+    const dots = document.querySelectorAll('.reviews-dots span');
+    if (!track || !dots.length) return;
+
+    track.addEventListener('scroll', () => {
+      const cards = track.querySelectorAll('.review-card');
+      let closest = 0;
+      let minDist = Infinity;
+      cards.forEach((card, i) => {
+        const dist = Math.abs(card.getBoundingClientRect().left - track.getBoundingClientRect().left);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      dots.forEach((d, i) => d.classList.toggle('active', i === closest));
+    }, { passive: true });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        const card = track.querySelectorAll('.review-card')[i];
+        if (card) track.scrollTo({ left: card.offsetLeft - 20, behavior: 'smooth' });
+      });
+    });
+  })();
+</script>
 
 <!-- About Strip -->
 <section class="about-strip">
