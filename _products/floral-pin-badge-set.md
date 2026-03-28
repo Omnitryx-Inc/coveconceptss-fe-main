@@ -35,8 +35,7 @@ short_desc: "A set of 4 vibrant floral pin badges in bold colours. Pin them to y
         </div>
         <span class="product-type-badge physical">Accessories</span>
         <h1>{{ page.title }}</h1>
-        <div class="product-info-price">${{ page.price }}</div>
-        <p class="product-short-desc">{{ page.short_desc }}</p>
+        <div class="product-info-price">£{{ page.price }}</div>
         <div class="qty-row">
           <span class="qty-label">Qty</span>
           <div class="qty-control">
@@ -46,9 +45,9 @@ short_desc: "A set of 4 vibrant floral pin badges in bold colours. Pin them to y
           </div>
         </div>
         <div class="add-to-cart-row">
-          <button class="btn btn-primary" onclick="addProductToCart()">Add to Cart</button>
-          <a href="/pages/cart.html" class="btn btn-outline">View Cart</a>
+          <button class="btn btn-primary btn-full" onclick="addProductToCart()">Add to Cart</button>
         </div>
+        <p class="product-short-desc">{{ page.short_desc }}</p>
         <div class="product-perks">
           <div class="perk"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Set of 4 badges</div>
           <div class="perk"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Blue, teal, pink, yellow</div>
@@ -65,7 +64,7 @@ short_desc: "A set of 4 vibrant floral pin badges in bold colours. Pin them to y
           <div class="accordion-item">
             <button class="accordion-trigger" onclick="toggleAccordion(this)">Shipping &amp; Delivery <span class="accordion-icon">+</span></button>
             <div class="accordion-body"><div class="accordion-body-inner">
-              <p>Ships within 1-2 weeks. Free shipping on orders over $50. See our <a href="/pages/shipping-info.html">Shipping Info</a> page.</p>
+              <p>Ships within 1-2 weeks. Free shipping on orders over £50. See our <a href="/pages/shipping-info.html">Shipping Info</a> page.</p>
             </div></div>
           </div>
           <div class="accordion-item">

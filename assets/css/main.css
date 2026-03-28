@@ -522,11 +522,11 @@ p { color: var(--muted); line-height: 1.75; }
 }
 .product-price {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: var(--ink);
 }
-.product-price .cents { font-size: .88rem; }
+.product-price .cents { font-size: 1rem; }
 
 /* =========================================================
    SECTION HEADERS
@@ -970,12 +970,12 @@ p { color: var(--muted); line-height: 1.75; }
   background: none;
 }
 
-.add-to-cart-row { display: flex; gap: 10px; margin-bottom: 24px; }
-.add-to-cart-row .btn { flex: 1; }
+.add-to-cart-row { display: flex; gap: 10px; margin-bottom: 20px; }
+.add-to-cart-row .btn { flex: 1; text-align: center; }
 
 .product-perks {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   margin-bottom: 28px;
 }
