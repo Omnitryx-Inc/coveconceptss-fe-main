@@ -28,7 +28,7 @@ function renderCart() {
         <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <h2>Your cart is empty</h2>
         <p>Looks like you haven't added anything yet. Let's change that.</p>
-        <a href="/pages/shop.html" class="btn btn-primary">Browse the Shop</a>
+        <a href="{{ '/pages/shop.html' | relative_url }}" class="btn btn-primary">Browse the Shop</a>
       </div>
     `;
     return;
@@ -70,7 +70,7 @@ function renderCart() {
       <button class="btn btn-primary btn-full" onclick="alert('Checkout coming soon! We are setting up our payment system.')">Proceed to Checkout</button>
       <p class="checkout-note">Secure checkout. Payment options coming soon.</p>
       <div style="text-align:center;margin-top:16px">
-        <a href="/pages/shop.html" style="font-size:.82rem;color:var(--muted);text-decoration:underline">Continue Shopping</a>
+        <a href="{{ '/pages/shop.html' | relative_url }}" style="font-size:.82rem;color:var(--muted);text-decoration:underline">Continue Shopping</a>
       </div>
     </div>
   `;

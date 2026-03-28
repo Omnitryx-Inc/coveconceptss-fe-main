@@ -9,12 +9,12 @@ layout: default
       <!-- Gallery -->
       <div class="product-gallery">
         <div class="product-gallery-main" id="main-img" onclick="openLightbox(this.querySelector('img').src)">
-          <img src="{{ page.images[0] }}" alt="{{ page.title }}" id="main-img-el" />
+          <img src="{{ page.images[0] | relative_url }}" alt="{{ page.title }}" id="main-img-el" />
         </div>
         <div class="product-gallery-thumbs">
           {% for img in page.images %}
-          <div class="gallery-thumb {% if forloop.first %}active{% endif %}" onclick="switchImage('{{ img }}', this)">
-            <img src="{{ img }}" alt="{{ page.title }} {{ forloop.index }}" loading="lazy" />
+          <div class="gallery-thumb {% if forloop.first %}active{% endif %}" onclick="switchImage('{{ img | relative_url }}', this)">
+            <img src="{{ img | relative_url }}" alt="{{ page.title }} {{ forloop.index }}" loading="lazy" />
           </div>
           {% endfor %}
         </div>
@@ -23,8 +23,8 @@ layout: default
       <!-- Info -->
       <div class="product-info">
         <div class="breadcrumb">
-          <a href="/">Home</a><span>/</span>
-          <a href="/pages/shop.html">Shop</a><span>/</span>
+          <a href="{{ '/' | relative_url }}">Home</a><span>/</span>
+          <a href="{{ '/pages/shop.html' | relative_url }}">Shop</a><span>/</span>
           <span>{{ page.title }}</span>
         </div>
 
@@ -111,7 +111,7 @@ layout: default
   }
   function addProductToCart() {
     const qty = parseInt(document.getElementById('qty').value) || 1;
-    addToCart('{{ page.cart_id }}', '{{ page.title }}', {{ page.price }}, '{{ page.images[0] }}', '{{ page.type }}', qty);
+    addToCart('{{ page.cart_id }}', '{{ page.title }}', {{ page.price }}, '{{ page.images[0] | relative_url }}', '{{ page.type }}', qty);
   }
   function toggleAccordion(trigger) { trigger.parentElement.classList.toggle('open'); }
 </script>
