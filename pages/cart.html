@@ -1,0 +1,95 @@
+---
+layout: default
+title: "Your Cart"
+description: "Review your Cove Conceptss cart before checkout."
+permalink: /pages/cart.html
+---
+
+<div class="page-hero" style="padding: 48px 24px 40px;">
+  <div class="container">
+    <h1>Your Cart</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="cart-layout" id="cart-container">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<script>
+function renderCart() {
+  const cart = getCart();
+  const container = document.getElementById('cart-container');
+
+  if (!cart.length) {
+    container.innerHTML = `
+      <div class="cart-empty" style="grid-column:1/-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added anything yet. Let's change that.</p>
+        <a href="/pages/shop.html" class="btn btn-primary">Browse the Shop</a>
+      </div>
+    `;
+    return;
+  }
+
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const shipping = subtotal >= 50 ? 0 : 7.99;
+  const total = subtotal + shipping;
+
+  const itemsHtml = cart.map(item => `
+    <div class="cart-item" data-id="${item.id}">
+      <div class="cart-item-img">
+        <img src="${item.image}" alt="${item.name}" />
+      </div>
+      <div>
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-type">${item.type}</div>
+        <div class="cart-item-actions">
+          <div class="qty-control" style="scale:.9;transform-origin:left">
+            <button class="qty-btn" onclick="changeItemQty('${item.id}', -1)">−</button>
+            <input class="qty-input" type="number" value="${item.qty}" min="1" max="10" style="width:40px" onchange="setItemQty('${item.id}', this.value)" />
+            <button class="qty-btn" onclick="changeItemQty('${item.id}', 1)">+</button>
+          </div>
+          <span class="cart-item-remove" onclick="removeFromCart('${item.id}')">Remove</span>
+        </div>
+      </div>
+      <div class="cart-item-price">£${(item.price * item.qty).toFixed(2)}</div>
+    </div>
+  `).join('');
+
+  container.innerHTML = `
+    <div class="cart-items">${itemsHtml}</div>
+    <div class="cart-summary">
+      <h3>Order Summary</h3>
+      <div class="summary-row"><span>Subtotal</span><span>£${subtotal.toFixed(2)}</span></div>
+      <div class="summary-row"><span>Shipping</span><span>${shipping === 0 ? '<span style="color:var(--sage)">Free</span>' : '£' + shipping.toFixed(2)}</span></div>
+      ${shipping > 0 ? `<div class="summary-row" style="font-size:.78rem;color:var(--sage)"><span>Add £${(50 - subtotal).toFixed(2)} more for free UK shipping</span></div>` : ''}
+      <div class="summary-row total"><span>Total</span><span>£${total.toFixed(2)}</span></div>
+      <button class="btn btn-primary btn-full" onclick="alert('Checkout coming soon! We are setting up our payment system.')">Proceed to Checkout</button>
+      <p class="checkout-note">Secure checkout. Payment options coming soon.</p>
+      <div style="text-align:center;margin-top:16px">
+        <a href="/pages/shop.html" style="font-size:.82rem;color:var(--muted);text-decoration:underline">Continue Shopping</a>
+      </div>
+    </div>
+  `;
+}
+
+function changeItemQty(id, delta) {
+  const cart = getCart();
+  const item = cart.find(i => i.id === id);
+  if (item) {
+    item.qty = Math.max(1, item.qty + delta);
+    saveCart(cart);
+    renderCart();
+  }
+}
+
+function setItemQty(id, val) {
+  updateQty(id, val);
+  renderCart();
+}
+
+document.addEventListener('DOMContentLoaded', renderCart);
+</script>

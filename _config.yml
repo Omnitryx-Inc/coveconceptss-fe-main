@@ -1,0 +1,36 @@
+title: "Cove Conceptss"
+description: "Handcrafted personalised gifts for Muslims. Mugs, nikkah invites, baby aqiqah gifts and more. Muslim owned, London based."
+url: "https://coveconcepts.com"
+baseurl: ""
+
+author:
+  name: "Cove Conceptss"
+
+# Collections
+collections:
+  products:
+    output: true
+    permalink: /products/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "products"
+    values:
+      layout: "product"
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+  - vendor
+
+future: true
